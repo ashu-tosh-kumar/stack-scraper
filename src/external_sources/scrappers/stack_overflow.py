@@ -1,3 +1,5 @@
+import logging
+
 import requests
 from bs4 import BeautifulSoup
 
@@ -5,7 +7,8 @@ from src.constants import mock_data
 from src.db_wrappers.in_memory_db import db
 from src.domain_models import domain_models
 from src.external_sources.external_source_base import ExternalSource
-from src.initializer import logger
+
+logger = logging.getLogger(__name__)
 
 
 class StackOverflowException(Exception):

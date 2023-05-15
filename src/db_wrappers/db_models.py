@@ -5,8 +5,10 @@ Pydantic models and everything will easily fall into place"""
 
 from datetime import datetime
 
+from pydantic import BaseModel
 
-class StackOverflowQuestionAnswer:
+
+class StackOverflowQuestionAnswer(BaseModel):
     """Pydantic model for stack_overflow table"""
 
     ques_no: int

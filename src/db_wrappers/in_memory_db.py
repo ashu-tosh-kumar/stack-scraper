@@ -1,9 +1,12 @@
+import logging
 import zoneinfo
 from datetime import datetime
 
 from pydantic import validate_arguments
 
 from src.db_wrappers import db_models
+
+logger = logging.getLogger(__name__)
 
 
 class InMemoryDatabaseWrapper:
@@ -54,4 +57,4 @@ class InMemoryDatabaseWrapper:
         return self._db["stack_overflow"].get(ques_no)
 
 
-db = InMemoryDatabaseWrapper()
+db = InMemoryDatabaseWrapper(logger)
