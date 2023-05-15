@@ -4,9 +4,9 @@ Stack Scraper is a sample repository showcasing how to write impeccably clean co
 will save your sanity. It is in correspondence to my Medium article [How to Write
 Impeccably Clean Code That Will Save Your Sanity?](https://)
 
-Stack-Scraper contains one scrapper that gets triggered every day and scrapes questions
-and answers from Stack Overflow. We are making following assumptions about Stack
-Overflow.
+Stack-Scraper contains one scrapper that that can be triggered on demand and scrapes
+questions and answers from Stack Overflow. We are making following assumptions about
+Stack Overflow.
 
 - Stack Overflow is a single page website.
 - All the questions are numbered in integers.
@@ -14,9 +14,11 @@ Overflow.
 
 ## Architecture
 
-- All the scraped data is stored in the Cassandra database.
-- Stack-Scraper provides one REST endpoint to fetch the scraped data stored in the
-  database by a given question number.
+- All the scraped data is stored in an in-memory database.
+- Stack-Scraper provides following REST endpoints
+  - [`GET`] `/health`: To check health of the application
+  - [`POST`] `/stackoverflow`: To run the scrapper
+  - [`GET`] `/stackoverflow/<question_no>`" To fetch a question by its number from db
 
 Please note that this is not a working project but only to showcase the ideas discussed
 in aforementioned article.
@@ -24,37 +26,53 @@ in aforementioned article.
 ## Repository Structure
 
 ```text
-├── .gitignore
-├── LICENSE
-├── README.md
-├── requirements.txt
+.
 ├── src
-│    ├── apis
-│    │    └── question_no.py
-│    ├── constants
-│    │    └── api_constants.py
-│    ├── db_wrappers
-│    ├── domain_models
-│    │    ├── domain_enums.py
-│    │    └── domain_models.py
-│    ├── external_sources
-│    │    ├── apis
-│    │    └── scrappers
-│    ├── initializer.py
-│    ├── main.py
-│    ├── scripts
-│    ├── secret.py
-|    ├── config.py
-│    └── utils
+│   ├── apis
+│   │   └── question_no.py
+│   ├── config.py
+│   ├── constants
+│   │   ├── api_constants.py
+│   │   └── mock_data.py
+│   ├── db_wrappers
+│   │   ├── db_models.py
+│   │   └── in_memory_db.py
+│   ├── domain_models
+│   │   ├── domain_enums.py
+│   │   └── domain_models.py
+│   ├── external_sources
+│   │   ├── apis
+│   │   ├── external_source_base.py
+│   │   ├── scrapper_tasks.py
+│   │   └── scrappers
+│   │       └── stack_overflow.py
+│   ├── main.py
+│   ├── scripts
+│   │   ├── run_api.py
+│   │   └── run_api.sh
+│   ├── secret.py
+│   └── utils
 └── test
     └── src
         ├── apis
+        │   └── test_question_no.py
         ├── constants
+        │   └── test_api_constants.py
         ├── db_wrappers
+        │   ├── test_db_models.py
+        │   └── test_in_memory_db.py
         ├── domain_models
+        │   ├── test_domain_enums.py
+        │   └── test_domain_models.py
         ├── external_sources
-        │    ├── apis
-        │    └── scrappers
+        │   ├── apis
+        │   ├── scrappers
+        │   │   └── test_stack_overflow.py
+        │   ├── test_external_source_base.py
+        │   └── test_scrapper_tasks.py
+        ├── test_config.py
+        ├── test_main.py
+        ├── test_secret.py
         └── utils
 ```
 
@@ -91,5 +109,4 @@ with each file containing each group.
 `test`: This folder contains all the test files. Note that `test` directory follows the
 same folder hierarchy as the code under `src`. This helps in maintaining test files of a
 large number of modules in a big project. Also, it aids in finding test file for a given
-module easily as for a given file `dir1/dir2/dir3/file.py`, you know that the respective
-test file would be `test/dir1/dir2/dir3/test_file.py`.
+module easily.
