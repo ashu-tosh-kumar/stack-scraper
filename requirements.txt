@@ -3,4 +3,6 @@ connexion[swagger-ui]==2.14.2
 flask==2.3.2
 pre-commit==3.3.1
 pydantic==1.10.7
+pytest==7.3.2
+pytest-mock==3.10.0
 requests==2.29.0

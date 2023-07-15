@@ -21,7 +21,11 @@ def run_scrappers() -> Response:
     """
     logger.info("End point hit: run_scrappers")
 
-    scrapper_tasks.run_all_scrappers()
+    try:
+        scrapper_tasks.run_all_scrappers()
+    except Exception:
+        logger.exception("Error in running scrappers")
+        return make_response({"status": domain_enums.ResponseStatus.ERROR.value}, 500)
 
     return make_response({"status": domain_enums.ResponseStatus.SUCCESS.value}, 200)
 
