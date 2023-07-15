@@ -1,5 +1,15 @@
 # Stack Scraper
 
+Table of Content
+
+- [Stack Scraper](#stack-scraper)
+  - [Introduction](#introduction)
+  - [How to run the application?](#how-to-run-the-application)
+  - [Architecture](#architecture)
+  - [Repository Structure](#repository-structure)
+
+## Introduction
+
 Stack Scraper is a sample repository showcasing how to write impeccably clean code that
 will save your sanity. It is in correspondence to my Medium article [How to Write
 Impeccably Clean Code That Will Save Your Sanity?](https://)
@@ -11,6 +21,11 @@ Stack Overflow.
 - Stack Overflow is a single page website.
 - All the questions are numbered in integers.
 - Each question has only one answer which could be accepted or not.
+
+## How to run the application?
+
+To run the application, simply clone the repository and run command `python -m src.main`
+from inside the repository location.
 
 ## Architecture
 
