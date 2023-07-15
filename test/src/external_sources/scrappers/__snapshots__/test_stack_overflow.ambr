@@ -1,0 +1,21 @@
+# serializer version: 1
+# name: TestStackOverflow.test__parse_page_should_parse_page_data
+  list([
+    tuple(
+      StackOverflowQuestion(no=1, text='How to start with competitive coding from ZERO?', comments=None),
+      StackOverflowAnswer(text='Read Medium Article: https://at-k.medium.com/how-to-start-with-competitive-coding-from-zero-cf99f3efdbb9', accepted=True),
+    ),
+    tuple(
+      StackOverflowQuestion(no=2, text='How to develop a Wox Plugin using Python?', comments=None),
+      StackOverflowAnswer(text='Read Medium Article: https://at-k.medium.com/how-to-develop-a-wox-plugin-using-python-8f2372281d7', accepted=True),
+    ),
+    tuple(
+      StackOverflowQuestion(no=3, text='How to Streamline Your TODOs with TODO Notifier for Python projects?', comments=None),
+      StackOverflowAnswer(text='Read Medium Article: https://at-k.medium.com/streamline-your-todos-with-todo-notifier-for-python-projects-6f95c03a2d34', accepted=True),
+    ),
+    tuple(
+      StackOverflowQuestion(no=4, text='How to Write Impeccably Clean Code That Will Save Your Sanity?', comments=None),
+      StackOverflowAnswer(text='Read Medium Article: <url>', accepted=True),
+    ),
+  ])
+# ---

@@ -35,7 +35,13 @@ class StackOverflow(ExternalSource):
             bytes: Returns the page content of the `target_url`
         """
         logger.info(f"fetching page {target_url}")
-        page = requests.get(target_url)
+
+        try:
+            page = requests.get(target_url)
+        except Exception:
+            error_msg: str = f"Error in fetching {target_url}"
+            logger.exception(error_msg)
+            raise StackOverflowException(error_msg)
 
         if page.status_code != 200:
             error_msg: str = f"Received non 200 status code in fetching {target_url}"

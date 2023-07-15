@@ -1,1 +1,1 @@
-HEALTH_RESPONSE = {"message": "Stack Scraper at your service"}
+HEALTH_RESPONSE = "Stack Scraper at your service"
