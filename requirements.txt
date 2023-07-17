@@ -3,6 +3,6 @@ flask==2.3.2
 pre-commit==3.3.1
 pydantic==2.0.3
 pytest==7.3.2
-pytest-mock==3.10.0
+pytest-mock==3.11.1
 requests==2.31.0
 syrupy==4.0.2  # For snapshot testing
