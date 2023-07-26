@@ -11,11 +11,12 @@ Table of Content
 ## Introduction
 
 Stack Scraper is a sample repository showcasing how to write impeccably clean code that
-will save your sanity. It is in correspondence to my Medium article [How to Write
-Impeccably Clean Code That Will Save Your Sanity?](https://)
+will save your sanity. It is in correspondence to my Medium article published by
+gitconnected: [How to Write Impeccably Clean Code That Will Save Your
+Sanity](https://medium.com/gitconnected/how-to-write-impeccably-clean-code-that-will-save-your-sanity-7d0ea59d285c)
 
-Stack-Scraper contains one scrapper that that can be triggered on demand and scrapes
-questions and answers from Stack Overflow. We are making following assumptions about
+Stack-Scraper contains one scrapper that can be triggered on demand and scrapes
+questions and answers from Stack Overflow. We are making the following assumptions about
 Stack Overflow.
 
 - Stack Overflow is a single page website.
@@ -24,7 +25,7 @@ Stack Overflow.
 
 ## How to run the application?
 
-To run the application, simply clone the repository and run command `python -m src.main`
+To run the application, clone the repository and run the command `python -m src.main`
 from inside the repository location.
 
 Once the application is up, you can run `curl localhost:5000/health` to confirm that the
@@ -32,9 +33,9 @@ API is working fine. You should receive a response like `{"message":"Stack Scrap
 your service","status":"SUCCESS"}`
 
 To run the scraper, run `curl -X POST localhost:5000/stackoverflow`. If the scrappers
-run successfully, you would receive a response like `{"status":"SUCCESS"}`
+run, you would receive a response like `{"status":"SUCCESS"}`
 
-Once the scrappers run successfully, you can try following commands to try out the
+Once the scrappers run, you can try following commands to try out the
 Stack Scraper.
 
 `curl localhost:5000/stackoverflow/1` : Should return successful response
@@ -56,7 +57,7 @@ Stack Scraper.
   - [`GET`] `/stackoverflow/<question_no>`" To fetch a question by its number from db
 
 Please note that this is not a working project but only to showcase the ideas discussed
-in aforementioned article.
+in the article mentioned above.
 
 ## Repository Structure
 
@@ -111,37 +112,37 @@ in aforementioned article.
         └── utils
 ```
 
-`src/`: Notice that all the source code is under the /src folder. This is not mandatory
+`src/`: Notice that all the source code is under the `src` folder. This is not mandatory
 but would be helpful if you want to convert your project into a sharable pip package.
 
 `apis/`: This folder contains all the domain REST endpoints (except the health check) in
-the project. We can create a new file under the apis folder for each new API we add to
+the project. We can create a new file under the `apis` folder for each new API we add to
 the project. This will help in having all the API code in one place and separate
 different APIs.
 
 `constants/`: This folder should contain all application-wide constants. It also helps
-business to check any business level constants like standard responses etc. Moreover, it
-makes it easy to change any value without having to worry about making same change at
-multiple places. Additionally, you should not put all constants in a single file naming
-constants.py as overtime it would grow to be a mess of its own. Instead try to create
-multiple files each containing a set of related constants. For example: stack_xpaths.py
+businesses to check any business-level constants like standard responses. Moreover, it
+makes it easy to change any value without having to worry about making the same change
+in many places. Additionally, you should not put all constants in a single file naming
+constants.py as over time it would grow to be a mess of its own. Instead, try to create
+many files each containing a set of related constants. For example: stack_xpaths.py
 to store all xpaths for scraping, api_constants.py to store API level constants like
 HEALTH_RESPONSE.
 
 `db_wrappers/`: This folder contains all the database models and wrappers to allow
 interaction with the database.
 
-`domain_models`: This folder contains all the pydantic based models and enum classes.
+`domain_models`: This folder contains all the pydantic-based models and enum classes.
 
 `external_sources`: This folder contains all the scrappers and/or external API
-integrations. Our scrapper for Stack Overflow would reside under
+integrations. Our scrapper for Stack Overflow would live under
 `external_sources/scrappers`.
 
 `utils`: This folder contains all the utility code. Please note not to dump all
-utility functions in a single utility files. Instead try to a create logical grouping
+utility functions in a single utility file. Instead, try to a create logical grouping
 with each file containing each group.
 
-`test`: This folder contains all the test files. Note that `test` directory follows the
-same folder hierarchy as the code under `src`. This helps in maintaining test files of a
-large number of modules in a big project. Also, it aids in finding test file for a given
-module easily.
+`test`: This folder contains all the test files. Note that the `test` directory follows
+the same folder hierarchy as the code under `src`. This helps in maintaining test files
+of a large number of modules in a big project. Also, it aids in finding test files for a
+given module easily.
