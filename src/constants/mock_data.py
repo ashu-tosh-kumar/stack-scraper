@@ -11,5 +11,11 @@ MOCK_STACK_OVERFLOW_DATA = [
         {"no": 3, "text": "How to Streamline Your TODOs with TODO Notifier for Python projects?"},
         {"text": "Read Medium Article: https://at-k.medium.com/streamline-your-todos-with-todo-notifier-for-python-projects-6f95c03a2d34", "accepted": True},
     ),
-    ({"no": 4, "text": "How to Write Impeccably Clean Code That Will Save Your Sanity?"}, {"text": "Read Medium Article: <url>", "accepted": True}),
+    (
+        {"no": 4, "text": "How to Write Impeccably Clean Code That Will Save Your Sanity"},
+        {
+            "text": "Read Medium Article: https://medium.com/gitconnected/how-to-write-impeccably-clean-code-that-will-save-your-sanity-7d0ea59d285c",
+            "accepted": True,
+        },
+    ),
 ]
