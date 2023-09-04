@@ -2,7 +2,7 @@ beautifulsoup4==4.12.2
 flask==2.3.3
 pre-commit==3.3.3
 pydantic==2.3.0
-pytest==7.4.0
+pytest==7.4.1
 pytest-mock==3.11.1
 requests==2.31.0
 syrupy==4.2.1  # For snapshot testing
