@@ -1,4 +1,4 @@
-beautifulsoup4==4.12.2
+beautifulsoup4==4.12.3
 flask==3.0.1
 pre-commit==3.6.0
 pydantic==2.5.3
