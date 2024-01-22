@@ -1,5 +1,5 @@
 beautifulsoup4==4.12.2
-flask==3.0.0
+flask==3.0.1
 pre-commit==3.6.0
 pydantic==2.5.3
 pytest==7.4.4
