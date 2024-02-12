@@ -6,7 +6,7 @@ class StackOverflowQuestion(BaseModel):
 
     no: int
     text: str
-    comments: str | None
+    comments: str | None = None
 
 
 class StackOverflowAnswer(BaseModel):
