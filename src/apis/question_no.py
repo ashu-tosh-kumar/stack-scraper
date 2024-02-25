@@ -1,6 +1,6 @@
 import logging
 
-from flask import Blueprint, Response, make_response
+from flask import Blueprint, Response, escape, make_response
 
 from src.db_wrappers.in_memory_db import db
 from src.domain_models import domain_enums
@@ -47,7 +47,7 @@ def get_question_answer(ques_no: int) -> Response:
     except ValueError:
         msg = f"Invalid question number: {ques_no}. ques_no should be an integer"
         logger.info(msg)
-        return make_response({"status": domain_enums.ResponseStatus.ERROR.value, "message": msg}, 400)
+        return make_response({"status": domain_enums.ResponseStatus.ERROR.value, "message": escape(msg)}, 400)
 
     try:
         question_answer = db.get_question_answer_by_ques_no(ques_no=ques_no)
@@ -56,6 +56,6 @@ def get_question_answer(ques_no: int) -> Response:
         return make_response({"status": domain_enums.ResponseStatus.ERROR.value, "message": "Internal server error"}, 500)
 
     if question_answer:
-        return make_response({"status": domain_enums.ResponseStatus.SUCCESS.value, "message": question_answer.dict()}, 200)
+        return make_response({"status": domain_enums.ResponseStatus.SUCCESS.value, "message": question_answer.model_dump()}, 200)
     else:
         return make_response({"status": domain_enums.ResponseStatus.SUCCESS.value, "message": "Question doesn't exist"}, 200)
