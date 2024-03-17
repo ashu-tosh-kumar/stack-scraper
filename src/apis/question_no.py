@@ -1,6 +1,7 @@
 import logging
 
-from flask import Blueprint, Response, escape, make_response
+from flask import Blueprint, Response, make_response
+from markupsafe import escape
 
 from src.db_wrappers.in_memory_db import db
 from src.domain_models import domain_enums
