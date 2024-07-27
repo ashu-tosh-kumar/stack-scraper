@@ -17,3 +17,7 @@ exclude = '''
   | .env
 )/
 '''
+
+[tool.isort]
+profile = "black"
+skip = ["migrations", ".env", "venv", ".local", ".history", ".vscode"]
