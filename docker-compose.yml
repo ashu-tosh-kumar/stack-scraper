@@ -1,0 +1,12 @@
+version: "3.11.3"
+services:
+  stack-scraper:
+    container_name: stack-scraper
+    build:
+      context: .
+    volumes:
+      - "./:/stack-scraper/"
+    ports:
+      - "0.0.0.0:8000:8000"
+    entrypoint: ["bash"]
+    command: ["src/scripts/run_api.sh"]
