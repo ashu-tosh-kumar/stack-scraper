@@ -28,19 +28,19 @@ Stack Overflow.
 To run the application, clone the repository and run the command `python -m src.main`
 from inside the repository location.
 
-Once the application is up, you can run `curl localhost:8000/health` to confirm that the
-API is working fine. You should receive a response like `{"message":"Stack Scraper at
-your service","status":"SUCCESS"}`
-
-To run the scraper, run `curl -X POST localhost:8000/stackoverflow`. If the scrappers
-run, you would receive a response like `{"status":"SUCCESS"}`.
-
 You can also use Docker to run the service using commands:
 
 ```bash
 docker compose build
 docker compose up -d
 ```
+
+Once the application is up, you can run `curl localhost:8000/health` to confirm that the
+API is working fine. You should receive a response like `{"message":"Stack Scraper at
+your service","status":"SUCCESS"}`
+
+To run the scraper, run `curl -X POST localhost:8000/stackoverflow`. If the scrappers
+run, you would receive a response like `{"status":"SUCCESS"}`.
 
 Once the scrappers run, you can try following commands to try out the
 Stack Scraper.
