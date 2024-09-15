@@ -1,4 +1,4 @@
-version: "3.11.3"
+version: "3.11.10"
 services:
   stack-scraper:
     container_name: stack-scraper

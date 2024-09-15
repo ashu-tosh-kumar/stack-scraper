@@ -1,5 +1,5 @@
 # Setup Python and Pip
-FROM python:3.11.3-bullseye
+FROM python:3.11.10-bullseye
 RUN pip install --upgrade pip
 RUN pip install poetry
 
