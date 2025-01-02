@@ -12,6 +12,9 @@ from src.external_sources.scrappers.stack_overflow import (
     StackOverflowException,
 )
 
+DUMMY_TARGET_URL = "https://unittest-url"
+REQUESTS = "src.external_sources.scrappers.stack_overflow.requests"
+
 
 @pytest.fixture
 def stack_overflow():
@@ -26,34 +29,31 @@ class TestStackOverflowException:
 
 class TestStackOverflow:
     def test__fetch_page_should_fetch_target_url(self, mocker, stack_overflow: StackOverflow):
-        dummy_target_url = "https://unittest-url"
-        stub_requests = mocker.patch("src.external_sources.scrappers.stack_overflow.requests")
+        stub_requests = mocker.patch(REQUESTS)
         dummy_page_data = Mock()
         dummy_page_data.status_code = 200
         dummy_page_data.content = "unittest-page-content"
         stub_requests.get.return_value = dummy_page_data
 
-        actual_value = stack_overflow._fetch_page(dummy_target_url)
+        actual_value = stack_overflow._fetch_page(DUMMY_TARGET_URL)
 
         assert dummy_page_data.content == actual_value
 
     def test__fetch_page_should_raise_exception_for_error_in_fetching_page(self, mocker, stack_overflow: StackOverflow):
-        dummy_target_url = "https://unittest-url"
-        stub_requests = mocker.patch("src.external_sources.scrappers.stack_overflow.requests")
+        stub_requests = mocker.patch(REQUESTS)
         stub_requests.get.side_effect = Exception("unittest-requests-get-exception")
 
         with pytest.raises(StackOverflowException):
-            stack_overflow._fetch_page(dummy_target_url)
+            stack_overflow._fetch_page(DUMMY_TARGET_URL)
 
     def test__fetch_page_should_raise_exception_for_non_200_page_response(self, mocker, stack_overflow: StackOverflow):
-        dummy_target_url = "https://unittest-url"
-        stub_requests = mocker.patch("src.external_sources.scrappers.stack_overflow.requests")
+        stub_requests = mocker.patch(REQUESTS)
         dummy_page_data = Mock()
         dummy_page_data.status_code = 500
         stub_requests.get.return_value = dummy_page_data
 
         with pytest.raises(StackOverflowException):
-            stack_overflow._fetch_page(dummy_target_url)
+            stack_overflow._fetch_page(DUMMY_TARGET_URL)
 
     def test__make_soup_should_make_soup(self, stack_overflow: StackOverflow):
         expected_value = BeautifulSoup(stack_overflow_page_bytes_content, "html.parser")
