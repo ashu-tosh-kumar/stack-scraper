@@ -13,7 +13,10 @@ Table of Content
 Stack Scraper is a sample repository showcasing how to write impeccably clean code that
 will save your sanity. It is in correspondence to my Medium article published by
 gitconnected: [How to Write Impeccably Clean Code That Will Save Your
-Sanity](https://medium.com/gitconnected/how-to-write-impeccably-clean-code-that-will-save-your-sanity-7d0ea59d285c)
+Sanity](https://medium.com/gitconnected/how-to-write-impeccably-clean-code-that-will-save-your-sanity-7d0ea59d285c).
+
+Please don't use it as it is in production without due diligence wrt security like
+enabling CSRF for live server, using non root user in docker etc.
 
 Stack-Scraper contains one scrapper that can be triggered on demand and scrapes
 questions and answers from Stack Overflow. We are making the following assumptions about
