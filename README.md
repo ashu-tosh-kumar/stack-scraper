@@ -7,6 +7,7 @@ Table of Content
   - [How to run the application?](#how-to-run-the-application)
   - [Architecture](#architecture)
   - [Repository Structure](#repository-structure)
+  - [Release History](#release-history)
 
 ## Introduction
 
@@ -156,3 +157,9 @@ with each file containing each group.
 the same folder hierarchy as the code under `src`. This helps in maintaining test files
 of a large number of modules in a big project. Also, it aids in finding test files for a
 given module easily.
+
+## Release History
+
+`v0.1.0`
+
+- Making official release of working code to better track changes.

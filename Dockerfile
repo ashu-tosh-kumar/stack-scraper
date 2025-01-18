@@ -1,27 +1,43 @@
 # Setup Python and Pip
 FROM python:3.11.10-bullseye
-RUN pip install --upgrade pip
-RUN pip install poetry
 
-# Setup system packages
-RUN apt-get update && apt-get -y upgrade
+# Poetry
+# https://python-poetry.org/docs#ci-recommendations
+ENV POETRY_VERSION=2.0.1 \
+    POETRY_HOME=/opt/poetry \
+    POETRY_VENV=/opt/poetry-venv \
+    POETRY_CACHE_DIR=/opt/.cache \
+    PYTHONPATH=/stack-scraper
+
+# install system packages, setup poetry
+RUN apt-get update \
+    && apt-get -qq clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+    && python3 -m venv $POETRY_VENV \
+    && $POETRY_VENV/bin/pip install -U pip setuptools poetry==${POETRY_VERSION}
 
 # Setup working directory
 WORKDIR /stack-scraper
 
-# Copy code
-COPY ./src/ /stack-scraper/src
-COPY ./pyproject.toml/ /stack-scraper/pyproject.toml
-COPY ./poetry.lock/ /stack-scraper/poetry.lock
+# Copy project files into the image
+COPY pyproject.toml poetry.lock ./
 
-# Setup python packages
-RUN poetry export -f requirements.txt >>requirements.txt
-RUN pip install --default-timeout=100 --no-cache-dir -r requirements.txt
+# Install Dependencies
+# First write to a temp file to avoid reading and writing to a file at the same time:
+# https://www.shellcheck.net/wiki/SC2094
+RUN $POETRY_VENV/bin/poetry self add poetry-plugin-export \
+    && $POETRY_VENV/bin/poetry export -f requirements.txt --without-hashes > requirements.tmp \
+    && mv requirements.tmp requirements.txt \
+    && pip install --no-input --no-cache-dir -r requirements.txt
+
+# Copy the application source code
+COPY ./src stack-scraper/src
 
 # Provide access to script files
-RUN chmod -R 777 src/scripts
+RUN chmod -R 755 stack-scraper/src/scripts
 
-# Setup the application
+# Expose the application port
 EXPOSE 8000
-ENV PYTHONPATH=/stack-scraper
+
+# Set entrypoint
 ENTRYPOINT ["bash"]
