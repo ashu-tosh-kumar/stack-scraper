@@ -1,5 +1,5 @@
 # Setup Python and Pip
-FROM python:3.13.4-bullseye
+FROM python:3.14.0rc1-bullseye
 
 # Poetry
 # https://python-poetry.org/docs#ci-recommendations
